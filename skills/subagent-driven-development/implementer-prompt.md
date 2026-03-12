@@ -102,10 +102,22 @@ Task tool (general-purpose):
     When done, report:
     - **Status:** DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
     - What you implemented (or what you attempted, if blocked)
-    - What you tested and test results
-    - Files changed
     - Self-review findings (if any)
     - Any issues or concerns
+
+    **Mandatory Evidence (REQUIRED — reports without this section will be rejected):**
+
+    ### Test Output
+    [Paste FULL verbatim test command output here — do not summarize or truncate]
+
+    ### Changes
+    [Paste FULL git diff --stat output here]
+
+    ### Files Changed
+    - path/to/file.py (+lines, -lines)
+    - path/to/other.py (+lines, -lines)
+
+    ---
 
     Use DONE_WITH_CONCERNS if you completed the work but have doubts about correctness.
     Use BLOCKED if you cannot complete the task. Use NEEDS_CONTEXT if you need

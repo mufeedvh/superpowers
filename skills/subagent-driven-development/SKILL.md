@@ -103,7 +103,7 @@ Use the least powerful model that can handle each role to conserve cost and incr
 
 Implementer subagents report one of four statuses. Handle each appropriately:
 
-**DONE:** Proceed to spec compliance review.
+**DONE:** Verify the report includes the Mandatory Evidence section (test output, git diff --stat, files changed). If missing, reject and re-dispatch. If present, proceed to spec compliance review.
 
 **DONE_WITH_CONCERNS:** The implementer completed the work but flagged doubts. Read the concerns before proceeding. If the concerns are about correctness or scope, address them before review. If they're observations (e.g., "this file is getting large"), note them and proceed to review.
 
@@ -273,5 +273,6 @@ Done!
 **Subagents should use:**
 - **superpowers:test-driven-development** - Subagents follow TDD for each task
 
-**Alternative workflow:**
+**Alternative workflows:**
+- **superpowers:team-driven-development** - Use when plan has 3+ independent tasks and TeamCreate is available (parallel teammates)
 - **superpowers:executing-plans** - Use for parallel session instead of same-session execution

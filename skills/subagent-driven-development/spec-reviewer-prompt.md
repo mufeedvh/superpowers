@@ -55,7 +55,25 @@ Task tool (general-purpose):
 
     **Verify by reading code, not by trusting report.**
 
+    ## Mandatory Citation Table
+
+    For EVERY requirement in the task spec, you MUST provide a citation.
+    A verdict without this table is INVALID and will be rejected.
+
+    | Requirement | Status | File:Line | Code Excerpt (2-3 lines) |
+    |---|---|---|---|
+    | [requirement 1] | IMPLEMENTED | src/file.py:42 | `def func(): ...` |
+    | [requirement 2] | MISSING | — | — |
+    | [requirement 3] | PARTIAL | src/other.py:18 | `# TODO: handle edge case` |
+
+    **Status values:** IMPLEMENTED, MISSING, PARTIAL, EXTRA (not in spec)
+
+    A requirement with status MISSING or PARTIAL means the implementation is NOT spec compliant.
+    A requirement with status EXTRA means the implementer built something not requested.
+
+    ## Verdict
+
     Report:
-    - ✅ Spec compliant (if everything matches after code inspection)
-    - ❌ Issues found: [list specifically what's missing or extra, with file:line references]
+    - PASS: All requirements IMPLEMENTED, no EXTRA work (include citation table as evidence)
+    - FAIL: Any requirement MISSING, PARTIAL, or EXTRA (include citation table showing gaps)
 ```

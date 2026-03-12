@@ -180,3 +180,30 @@ From debugging session (2025-10-03):
 - All investigations completed concurrently
 - All fixes integrated successfully
 - Zero conflicts between agent changes
+
+## Team Mode (When Investigators Need to Communicate)
+
+If `TeamCreate` is available and investigators might need to share findings, consider using Agent Teams instead of independent Agent dispatch.
+
+**Use teams when:**
+- Investigators might find related root causes across different subsystems
+- One investigator's finding should redirect another's approach
+- You want competing hypotheses where investigators challenge each other's theories
+- The debugging session benefits from discussion and convergence
+
+**Use standard dispatch when:**
+- Investigations are fully independent (no shared root causes)
+- You just need results, not discussion
+- Investigators won't benefit from each other's findings
+
+**Team dispatch pattern:**
+```
+1. TeamCreate: "<debug-session>"
+2. Spawn investigator teammates (one per hypothesis/domain)
+3. Each investigator explores their theory
+4. Investigators message each other when they find relevant evidence
+5. Lead synthesizes findings and identifies the root cause
+6. Shutdown and cleanup
+```
+
+From the official docs: "teammates test different theories in parallel and converge on the answer faster" — the debate structure prevents anchoring on a single plausible explanation.

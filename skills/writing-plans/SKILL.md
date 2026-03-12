@@ -49,7 +49,7 @@ This structure informs the task decomposition. Each task should produce self-con
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED: Use superpowers:team-driven-development (if Agent Teams available and plan qualifies), superpowers:subagent-driven-development (if subagents available), or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -65,6 +65,7 @@ This structure informs the task decomposition. Each task should produce self-con
 ````markdown
 ### Task N: [Component Name]
 
+**Dependencies:** Task X, Task Y (or "none")
 **Files:**
 - Create: `exact/path/to/file.py`
 - Modify: `exact/path/to/existing.py:123-145`
@@ -137,11 +138,17 @@ After saving the plan:
 
 **Execution path depends on harness capabilities:**
 
-**If harness has subagents (Claude Code, etc.):**
-- **REQUIRED:** Use superpowers:subagent-driven-development
-- Do NOT offer a choice - subagent-driven is the standard approach
-- Fresh subagent per task + two-stage review
+**If harness has Agent Teams (TeamCreate available) AND plan has 3+ independent tasks touching different files:**
+- **RECOMMENDED:** Use superpowers:team-driven-development
+- Parallel implementation with persistent teammates + fresh subagent reviews
+- Best for plans where multiple tasks can run concurrently without file conflicts
+- Falls back to subagent-driven-development if the plan fails the fitness check
 
-**If harness does NOT have subagents:**
+**If harness has subagents (Agent tool available):**
+- Use superpowers:subagent-driven-development
+- Sequential, fresh subagent per task, two-stage review
+- Best for tightly coupled tasks, tasks sharing files, or plans with fewer than 3 parallelizable tasks
+
+**If harness has neither:**
 - Execute plan in current session using superpowers:executing-plans
 - Batch execution with checkpoints for review
